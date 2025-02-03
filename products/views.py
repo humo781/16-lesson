@@ -54,7 +54,6 @@ def product_detail(request, year, month, day, slug):
                 rating=rating,
                 comment=content
             )
-            # product.comment.add(comment)
             return redirect(product.get_detail_url())
     ctx = {'product': product, 'comments': comments}
     return render(request, 'product/product-detail.html', ctx)
@@ -62,7 +61,6 @@ def product_detail(request, year, month, day, slug):
 def product_by_category(request):
     products = Product.objects.all()
 
-    # Filtrlarni olish
     selected_brands = request.GET.getlist('brand')
     selected_colors = request.GET.getlist('color')
     min_price = request.GET.get('min-price')
@@ -70,10 +68,8 @@ def product_by_category(request):
 
     if selected_brands:
         products = products.filter(brand__name__in=selected_brands)
-
     if selected_colors:
         products = products.filter(color__name__in=selected_colors)
-
     if min_price:
         products = products.filter(price__gte=min_price)
     if max_price:
@@ -81,6 +77,7 @@ def product_by_category(request):
 
     brands = Brand.objects.all()
     colors = Color.objects.all()
+
     ctx = {'products': products,
            'brands': brands,
            'colors': colors,
@@ -88,5 +85,6 @@ def product_by_category(request):
            'selected_colors': selected_colors,
            'min_price': min_price,
            'max_price': max_price}
+
     return render(request, 'product/product-by-category.html', ctx)
 
