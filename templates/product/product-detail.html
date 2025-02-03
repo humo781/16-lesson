@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}Product Detail{% endblock %}
+
+{% block content %}
+    <div class="content-container animate-fade-in">
+        <div class="product-detail">
+            <div class="product-image-container">
+                <img src="{{ product.image.url }}" alt="Wireless Headphones" class="product-image">
+            </div>
+            <div class="product-info">
+                <h1 class="product-title">{{ product.name }}</h1>
+                <p class="product-price">${{ product.price }}</p>
+                <div class="product-meta">
+                    <p><strong>Brand:</strong> {{ product.brand }}</p>
+                    <p><strong>Color:</strong> {{ product.color }}</p>
+                </div>
+                <p class="product-description">
+                    {{ product.description }}
+                </p>
+            </div>
+        </div>
+
+        <div class="reviews-section animate-slide-up">
+            <h2 class="section-title">Reviews</h2>
+            <div class="reviews-container">
+                {% for comment in comments %}
+                    <div class="review">
+                        <div class="review-header">
+                            <h3 class="reviewer-name">{{ comment.user_name }}</h3>
+                            <div class="review-rating">{{ comment.rating }}</div>
+                        </div>
+                        <p class="review-content">{{ comment.comment }}</p>
+                    </div>
+                {% empty %}
+                    <h1>No Comment</h1>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="add-review-section animate-slide-up">
+            <h2 class="section-title">Add a Review</h2>
+            <form id="review-form" class="review-form" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="reviewer-name" class="form-label">Name:</label>
+                    <input type="text" id="reviewer-name" name="name" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="review-rating" class="form-label">Rating:</label>
+                    <select id="review-rating" name="rating" required class="form-input">
+                        <option value="5">⭐️⭐️⭐️⭐️⭐️5 Stars</option>
+                        <option value="4">⭐️⭐️⭐️⭐️4 Stars</option>
+                        <option value="3">⭐️⭐️⭐️3 Stars</option>
+                        <option value="2">️⭐️️⭐️2 Stars</option>
+                        <option value="1">⭐️1 Star</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="review-content" class="form-label">Review:</label>
+                    <textarea id="review-content" name="content" required class="form-input"></textarea>
+                </div>
+                <button type="submit" class="submit-button">Submit Review</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

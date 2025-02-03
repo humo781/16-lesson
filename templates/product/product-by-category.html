@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Product by Category{% endblock %}
+{% block main_class %}class="product-category-page"{% endblock %}
+
+{% block content %}
+<div class="content-container">
+    <h1 class="page-title">Products by Category</h1>
+    <div class="product-category-layout">
+        <aside class="filters-sidebar animate-slide-up">
+            <h2 class="filters-title">Filters</h2>
+
+            {# PRODUCT FORM #}
+            {% include 'includes/product_form.html' %}
+
+        </aside>
+        <div class="product-content">
+            <div class="product-grid stagger-animation">
+                {% for product in products %}
+                    <a href="{{ product.get_detail_url }}" class="product-card animate-scale-up">
+                        <div class="product-image">
+                            <img src="{{ product.image.url }}" alt="Wireless Headphones">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">{{ product.name }}</h3>
+                            <p class="product-price">${{ product.price }}</p>
+                            <span class="view-details">View Details</span>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

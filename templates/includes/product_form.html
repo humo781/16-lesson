@@ -1,0 +1,32 @@
+<form id="filter-form" class="filters-form" method="get">
+    <div class="filter-group">
+        <h3 class="filter-subtitle">Brand</h3>
+        {% for brand in brands %}
+            <label for="{{ brand.name }}" class="filter-option">
+                <input type="checkbox" id="{{ brand.name }}" name="brand" value="{{ brand.name }}"
+               {% if brand.name in selected_brands %}checked{% endif %}>
+                <span class="checkmark"></span>
+                {{ brand.name }}
+            </label>
+        {% endfor %}
+    </div>
+    <div class="filter-group">
+        <h3 class="filter-subtitle">Color</h3>
+        {% for color in colors %}
+            <label class="filter-option">
+                <input type="checkbox" name="color" value="{{ color.name }}"
+                {% if color.name in selected_colors %}checked{% endif %}>
+                <span class="checkmark"></span>
+                {{ color.name }}
+            </label>
+        {% endfor %}
+    </div>
+    <div class="filter-group">
+        <h3 class="filter-subtitle">Price Range</h3>
+        <div class="price-range-inputs">
+            <input type="number" name="min-price" placeholder="Min" class="form-input" value="{{ min_price }}">
+            <input type="number" name="max-price" placeholder="Max" class="form-input" value="{{ max_price }}">
+        </div>
+    </div>
+    <button type="submit" class="filter-button">Apply Filters</button>
+</form>

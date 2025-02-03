@@ -1,0 +1,51 @@
+Boshlang'ich sozlamalar
+1. gitignore sozlash
+2. venv yaratish va aktivatsiya qilish
+3. django o'rnatish
+4. config nomli proyekt yaratish
+5. python manage.py createsuperuser (agar admin panelga kirishga to'g'ri kelib qolsa xar ehtimol)
+
+Loyihaning config sozlamalari
+1. app yaratish
+2. config/settings.py da applarni installed_apps ga qo'shish
+3. config/settings.py da templates manzilini BASE_DIR orqali berish
+4. config/settings.py timezone ni 'Asia/Tashkent' ga to'g'irlash
+5. config/settings.py da static faylini sozlash
+5. config/settings.py da media faylini sozlash
+6. config/urls.py da home funksiyasini asosiy url ('') ga sozlash
+7. config/urls.py da apps urllarini larini ko'rsatish
+
+/// ASOSIY KOD YOZISH QISMI
+1. templates va static directory yaratish
+3. static ni ichida agar bo'lsa css uchun alohida papka yaratish
+
+reponi nomi seo-blog bo'lishi kerak
+
+Loyiha 4ta app (ilova)dan iborat
+1. catalogs
+2. brands
+3. colors
+4. products
+
+Vazifa shartlari
+Har bir app quyidagi talablarga javob berishi lozim.
+gitignore bo'lishi va keraksiz fayllar (.idea, pycache, db.sqlite3) repoga ketib qolmasligi kerak
+barcha html fayllarga backend ulang!
+template vorisdorlikka ahamiyatli bo'ling
+Database relations ga mos bo'lishi kerak
+mantiqiy (logika) fikrlab o'zila qolib ketgan joylarini o'zilar bartaraf etishingiz kerak
+base modeldan foydalaning agar kerak bo'lsa
+detail qismlarida seo friendly url ishlatish lozim
+agar bitta kamchiligi bo'lsa loyiha qabul qilinmaydi
+
+// git rm -r --cached .idea (.idea ketib qolsa o'chirish uslubi, --cached mahalliy diskdagi fayllarni o'chirmaydi,
+faqat Git kuzatuvidan olib tashlaydi)
+
+# MODEL
+productning name, price, image, brand(relation), color(relation), description, comment(ralation) bor
+brandning name, description, logo si bor
+catalogning name, description, parent_category bor
+colorning name, hex_code bor
+
+
+umumiy test qilish qoldi
